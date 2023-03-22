@@ -1,0 +1,53 @@
+
+body {
+background-color: #444444;
+background-image: url("https://cdn.glitch.me/d354bb74-db20-4c6c-90db-b2646d509a55/PXL_20210526_014527428.jpg");
+text-align: center;
+background-position: center bottom;
+background-repeat: no-repeat;
+}
+a{
+  font-family:'Overpass', sans-serif
+}
+a:link, a:visited{color: #999999}
+a:hover{color: white}
+
+div{
+    align-items:center ;
+    text-align:center;
+    justify-content: center;
+}
+html,body{margin:0;padding:0;height:100vh}
+h1,p{margin:0 0 1em}
+
+
+input,textarea,button,select{
+border-radius:10px;
+background:#444444;
+border-style:solid;
+border-color:#3498db;
+font-family:"Overpass", sans-serif;
+color:#2ecc71;
+}
+input:focus,textarea:focus,button:focus,select:focus{
+border-color:#2ecc71;
+color:#3498db;
+outline: none;
+}
+input[type=range]{
+  border:none;
+  background:none;
+}
+/*input[type=range]::-webkit-slider-runnable-track {
+  background-color: #3498db; /* Replace with your desired color */
+/*}
+input[type=range]::-webkit-slider-thumb {
+  background-color: #2ecc71; /* Replace with your desired color */
+/*}*/
+input[type=range]::-moz-range-track {
+  background-color: #3498db; /* Replace with your desired color */
+}
+input[type=range]::-moz-range-thumb {
+  background-color: #2ecc71; /* Replace with your desired color */
+  
+}
