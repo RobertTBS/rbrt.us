@@ -77,38 +77,43 @@ function click5(){
 }
 
 
-const greeting = 0
+var greeting;
 function notif(pd,time){//notifications
  //   greeting = new Notification(time, {
  //   body: pd+": "+time,
  //   icon: "https://www.northpolk.org/cms/lib/IA02205672/Centricity/Template/GlobalAssets/images///logos/NP_Logo_free_floating%20103.png",
  //   silent:true, //Only for chrome based bowsers
  // });
+
   
   if (sl==0){ //off
-    greeting.close()
+    //greeting.close()
   }else{      //on
     greeting = new Notification(time, {
-   // body: "pd "+pd+": "+time,
+    body: "pd "+pd+": "+time,
     tag:"notiffff",
+    renotify: false,
     icon: "https://www.northpolk.org/cms/lib/IA02205672/Centricity/Template/GlobalAssets/images///logos/NP_Logo_free_floating%20103.png",
     silent:true, //Only for chrome based bowsers
+    id: "notiffff"
   });
-  
-  }
-  return true
-}
-
+    //    setTimeout(closenotif,840)
+}}/*
+function closenotif(){
+    greeting.close()
+   }*/
 
 var now = new Date();
 function addToday(hr,min){
  hr=hr.toString();
  min=min.toString();
  now = new Date();
+ var month = now.getMonth()+1
  var n = now.getTime();
  var day = now.getDate()
  if(day<10){day = "0"+now.getDate()} //CHANGED HERE 12/12/22
- var today = now.getFullYear().toString()+"-"+(now.getMonth()+1).toString()+"-"+day+"T"+hr+":"+min
+ if(month<10){month="0"+month.toString()} //CHANGED 1/4/23
+ var today = now.getFullYear().toString()+"-"+(month).toString()+"-"+day+"T"+hr+":"+min
  today=today.toString();
  today = new Date(today);
  today = today-n;
@@ -136,10 +141,11 @@ function least(){
   if (se==0){
     if (now.getDay()==1){
       var theleast = 0-now.getTime()*200;//set to some absurd number that 1st period will always be greater than
-      mnday.forEach(function(val,index,arr){
+      mnday.forEach(function(val,index,arr){``
       now = new Date();
       var day = now.getDate();if(day<10){day = "0"+now.getDate()}
-      var valpd = new Date(now.getFullYear().toString()+"-"+(now.getMonth()+1).toString()+"-"+day+"T"+val.sh+":"+val.sm).getTime()
+      var month = now.getMonth()+1;if(month<10){month="0"+month.toString()}
+      var valpd = new Date(now.getFullYear().toString()+"-"+(month).toString()+"-"+day+"T"+val.sh+":"+val.sm).getTime()
       //lert(now.getTime()-valpd)
       if ((now.getTime() - valpd)>theleast && (now.getTime() - valpd) < 0){
         theleast = now.getTime() - valpd
@@ -158,7 +164,8 @@ function least(){
       wkday.forEach(function(val,index,arr){
       now = new Date();
       var day = now.getDate();if(day<10){day = "0"+now.getDate()}
-      var valpd = new Date(now.getFullYear().toString()+"-"+(now.getMonth()+1).toString()+"-"+day+"T"+val.sh+":"+val.sm).getTime()
+      var month = now.getMonth()+1;if(month<10){month="0"+month.toString()}
+      var valpd = new Date(now.getFullYear().toString()+"-"+(month).toString()+"-"+day+"T"+val.sh+":"+val.sm).getTime()
       //lert(now.getTime()-valpd)
       if ((now.getTime() - valpd)>theleast && (now.getTime() - valpd) < 0){
         theleast = now.getTime() - valpd
@@ -179,7 +186,8 @@ function least(){
       mnday.forEach(function(val,index,arr){
       now = new Date();
       var day = now.getDate();if(day<10){day = "0"+now.getDate()}
-      var valpd = new Date(now.getFullYear().toString()+"-"+(now.getMonth()+1).toString()+"-"+day+"T"+val.eh+":"+val.em).getTime()
+      var month = now.getMonth()+1;if(month<10){month="0"+month.toString()}
+      var valpd = new Date(now.getFullYear().toString()+"-"+(month).toString()+"-"+day+"T"+val.eh+":"+val.em).getTime()
       //lert(now.getTime()-valpd)
       if ((now.getTime() - valpd)>theleast && (now.getTime() - valpd) < 0){
         theleast = now.getTime() - valpd
@@ -201,7 +209,8 @@ function least(){
       wkday.forEach(function(val,index,arr){
       now = new Date();
       var day = now.getDate();if(day<10){day = "0"+now.getDate()}
-      var valpd = new Date(now.getFullYear().toString()+"-"+(now.getMonth()+1).toString()+"-"+day+"T"+val.eh+":"+val.em).getTime()
+      var month = now.getMonth()+1;if(month<10){month="0"+month.toString()}
+      var valpd = new Date(now.getFullYear().toString()+"-"+(month).toString()+"-"+day+"T"+val.eh+":"+val.em).getTime()
       //alert(now.getTime()-valpd)
       if ((now.getTime() - valpd)>theleast && (now.getTime() - valpd) < 0){
         theleast = now.getTime() - valpd
@@ -243,8 +252,14 @@ if(se==1){ //START OR END OF PERIOD
 click1()
 click3()
 click5()
-function doit(){go();least()}
-setInterval(doit,850)
+function doit(){
+  go();least()
+//doit()
+}
+
+
+//while (true==true){doit}
+setInterval(doit,1100)
 
 function update(vpd,h,m){
          if (document.getElementById('pd'+vpd)){
@@ -255,4 +270,4 @@ function update(vpd,h,m){
        ele.style="font-family:'Overpass',sans-serif; color:white";
        ele.innerHTML = 'Period '+vpd+": "+addToday(h,m);
        document.body.appendChild(ele); 
-}}
+}}//What
