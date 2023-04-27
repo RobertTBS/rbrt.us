@@ -18,11 +18,37 @@
       <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Overpass&family=Press+Start+2P&display=swap" rel="stylesheet">
     <!--End header-->
+    <style>
+      span{
+        font-family:'Overpass',sans-serif;
+      }
+    </style>
   </head>
   <body>
-    <br>
-    <h1 style="display:inline-clock; font-family:'Press Start 2P',sans-serif; font-size:1000%;margin:0;"><div class="backdiv" style="width: max-content;height:max-content; margin:0;padding:0;display:inline;"><span>404</span></div></h1>
-    <h2 style="font-family:'Overpass',sans-serif">Where did it go?</h2>
-    <h3><span><a href="javascript:history.back()">Back</a></span><span> - </span><span><a href="/">Home</a></span></h3>
+    <a href="/">home</a><span>   -   </span><a href="https://forms.gle/nGGuRrSSuyX2QCcK7">form</a>
+    <h1 style="font-family:'Press Start 2P',sans-serif">AdCalc</h1>
+    <input type="checkbox" id="cut" name="Cut" checked><span>Cut</span><br>
+    <input type="checkbox" id="bag" name="Bag" checked><span>Bag</span><br>
+    <input id="num"><span>Total number of pages</span><br>
+    <button onclick="calc()">CALCULATE</button><br>
+    <input placeholder="Output" id="out" readonly>
+    <script>
+      const cut = document.getElementById("cut");
+      const bag = document.getElementById("bag");
+      const num = document.getElementById("num");
+      const out = document.getElementById("out");
+      let price = 0;
+      function calc(){
+        price = num.value*0.50;
+        if (bag.checked == true){
+          price = price + 0.25;
+        };
+        if (cut.checked == true){
+          price = price+(num.value*0.25)
+        };
+        out.value = "$"+price;
+        price = 0;
+      };
+    </script>
   </body>
 </html>

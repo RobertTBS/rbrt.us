@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The home of all things RobertTBS" />
+  <head>
+    <title>R Notes</title>
+    <link type="image/png" rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAACHCAYAAAA850oKAAAAAXNSR0IArs4c6QAAA/pJREFUeF7tnMFxG0EMBMlcnIJjUkyOySkoF7pU/omfGc7qpgi039hbo6cJUKKk+63379G7mpsVAnel6IdqkOOHwJ56LHKcIjnwOcgxMNRTLSHHKZIDn4McA0M91RJynCI58DnIMTDUUy0hxymSA5+DHANDPdUScpwiOfA5yDEw1FMtIccpkgOfgxwDQz3VEnKcIjnwOakclU9WH4/KtW8Z//3+esSvn/yPqpIScuieIofOal0lcqyLXG8YOXRW6yqRY13kesPIobNaV4kc6yLXG0YOndW6SuRYF7neMHLorNZVIse6yPWGkUNnta4SOdZFrjeMHDqrdZWpHJVPVpOU+FRWp4ccOqt1lcixLnK9YeTQWa2rRI51kesNI4fOal0lcqyLXG8YOXRW6yqRY13kesPIobNaV4kc6yLXG0YOndW6SuRYF7neMHLorNZVIse6yPWGa3K840fnv/986mS/Vf79+PXy2dZB5DDII4cO6+tPMLz8wz5MDh10q5LJYZBncuiwmBw6qxvvOQxYrBUDVqmUtWKAZ63osFgrOivWisHqxlpxaHVqWSsGd9aKDou1orNirRisWCsOrFIta8UAz1rRYbFWdFasFYMVa8WBVapdt1Zaq6F1b+IVchj0ks9HkMMA3fomWCuk1r1GJE+lTA6DHpNDh/WWX620XsGte/U4nyuZHAY9JocOi8mhs7oxOQxYvCHVYSUTS7+FtVJ7BTM5DE2ZHDosJofOKqpsvYJb9yaw+GrFoJe8gpHDAM1a0WElUuq38IaUN6SGLawVA1byCmatGKDfca0Y7T2VJmIl9yZnmRwJPeMschiwmBwGrFIpk+Mi8EwOAzSTw4BVKmVyXASeyWGAZnIYsEqlTI6LwDM5DNBMDgNWqZTJcRF4JocBmslhwCqVMjkuAs/kMEAzOQxYpVImx0XgmRwGaCaHAatUyuQwwCevfn6ewwD9jpMDOfSA+Y03nVXtxxON/+JTKWvFoMfk0GExOXRWTA6DVe1vgrXeGLbudTL5XstaMeixVnRYrBWdFWvFYMVaMWAlE8u4hq9WWru/dS9yGARaIbXuNdAwOVohte5FDoNAK6TWvQYaJkcrpNa9yGEQaIXUutdAw+RIYG07u+47pNsCTvpFjoTe8LPIMTzgpD3kSOgNP4scwwNO2kOOhN7ws8gxPOCkPeRI6A0/ixzDA07aQ46E3vCzyDE84KQ95EjoDT+LHMMDTtpDjoTe8LM1OYZzXd9e9Hsr6+kNB4AcwwNO2kOOhN7ws8gxPOCkPeRI6A0/ixzDA07aQ46E3vCzyDE84KQ95EjoDT+LHMMDTtpDjoTe8LPIMTzgpD3kSOgNP4scwwNO2vsHSmLQHzbXcQ4AAAAASUVORK5CYII=">
+    <link rel="stylesheet" href="/style.css">
+    <script src="notepad/main.js"></script>
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Insert fonts from google here-->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+      @font-face {
+      src: url("https://cdn.glitch.com/d354bb74-db20-4c6c-90db-b2646d509a55/ComicSansMS3.ttf") format('truetype');
+   font-weight: normal;
+   font-style: normal;
+  font-family: ComicSans;
+}
+            @font-face {
+      src: url("https://cdn.glitch.com/d354bb74-db20-4c6c-90db-b2646d509a55/times-new-roman.ttf") format('truetype');
+   font-weight: normal;
+   font-style: normal;
+  font-family: TimesNewRoman;
+}
+      /*Extra google fonts not typically used on the website*/
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    </style>
+  </head>
+  <body>
+    <button onclick="window.location.href = '/'">home</button><br>
+<input id="Title" placeholder="Filename" style="width:90%">
+<textarea  style="width:90%; height:80%" type="text" id="TextImpt" placeholder="Enter notes here"></textarea>
+    <input type="file" id="file" placeholder="Open" style="width:0px;display:none" class="hidden" onchange="openFile()">
+    <button style="width:90%"><label for="file" style="display: block; width:100%" id="theLabel">Select file</label></button>
+    
+    <button onclick="saveData(document.getElementById('TextImpt').value, document.getElementById('Title').value);" style="width:65%">Save</button>
+    <button onclick="eval(document.getElementById('TextImpt').value)" style="width:25%">Evaluate as Javascript</button>
+    <br>
+    <span style="text-align:center; display:inline-block; width:100%"><input type="range" min="4" max="120" value="12" class="slider" id="aRange" placeholder="Text size" onchange="changeSize(this.value); document.getElementById('txtSize').innerHTML = this.value+'C';" style="width:45%"><span id="txtSize" style="width: 4%; font-family:'Overpass',sans-serif; color:#3498db">12C</span>
+<select onchange="changeFont(this)" style="width:45%"> 
+<option value = "NO">SysDefault</option>  
+<option value = "RO">Roboto</option>  
+<option value = "RM">Roboto Mono</option>  
+<option value = "OP">Highway Gothic (Overpass)</option>  
+<option value = "PS">Press Start 2P</option>    
+<option value = "CS">Comic Sans MS</option> 
+<option value = "NR">Times New Roman</option>  
+</select>  
+    </span>
+  </body>
+</html>

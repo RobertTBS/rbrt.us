@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The home of all things RobertTBS" />
+  <head>
+    <title>R Notes</title>
+    <link type="image/png" rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAACHCAYAAAA850oKAAAAAXNSR0IArs4c6QAAA/pJREFUeF7tnMFxG0EMBMlcnIJjUkyOySkoF7pU/omfGc7qpgi039hbo6cJUKKk+63379G7mpsVAnel6IdqkOOHwJ56LHKcIjnwOcgxMNRTLSHHKZIDn4McA0M91RJynCI58DnIMTDUUy0hxymSA5+DHANDPdUScpwiOfA5yDEw1FMtIccpkgOfgxwDQz3VEnKcIjnwOakclU9WH4/KtW8Z//3+esSvn/yPqpIScuieIofOal0lcqyLXG8YOXRW6yqRY13kesPIobNaV4kc6yLXG0YOndW6SuRYF7neMHLorNZVIse6yPWGkUNnta4SOdZFrjeMHDqrdZWpHJVPVpOU+FRWp4ccOqt1lcixLnK9YeTQWa2rRI51kesNI4fOal0lcqyLXG8YOXRW6yqRY13kesPIobNaV4kc6yLXG0YOndW6SuRYF7neMHLorNZVIse6yPWGa3K840fnv/986mS/Vf79+PXy2dZB5DDII4cO6+tPMLz8wz5MDh10q5LJYZBncuiwmBw6qxvvOQxYrBUDVqmUtWKAZ63osFgrOivWisHqxlpxaHVqWSsGd9aKDou1orNirRisWCsOrFIta8UAz1rRYbFWdFasFYMVa8WBVapdt1Zaq6F1b+IVchj0ks9HkMMA3fomWCuk1r1GJE+lTA6DHpNDh/WWX620XsGte/U4nyuZHAY9JocOi8mhs7oxOQxYvCHVYSUTS7+FtVJ7BTM5DE2ZHDosJofOKqpsvYJb9yaw+GrFoJe8gpHDAM1a0WElUuq38IaUN6SGLawVA1byCmatGKDfca0Y7T2VJmIl9yZnmRwJPeMschiwmBwGrFIpk+Mi8EwOAzSTw4BVKmVyXASeyWGAZnIYsEqlTI6LwDM5DNBMDgNWqZTJcRF4JocBmslhwCqVMjkuAs/kMEAzOQxYpVImx0XgmRwGaCaHAatUyuQwwCevfn6ewwD9jpMDOfSA+Y03nVXtxxON/+JTKWvFoMfk0GExOXRWTA6DVe1vgrXeGLbudTL5XstaMeixVnRYrBWdFWvFYMVaMWAlE8u4hq9WWru/dS9yGARaIbXuNdAwOVohte5FDoNAK6TWvQYaJkcrpNa9yGEQaIXUutdAw+RIYG07u+47pNsCTvpFjoTe8LPIMTzgpD3kSOgNP4scwwNO2kOOhN7ws8gxPOCkPeRI6A0/ixzDA07aQ46E3vCzyDE84KQ95EjoDT+LHMMDTtpDjoTe8LM1OYZzXd9e9Hsr6+kNB4AcwwNO2kOOhN7ws8gxPOCkPeRI6A0/ixzDA07aQ46E3vCzyDE84KQ95EjoDT+LHMMDTtpDjoTe8LPIMTzgpD3kSOgNP4scwwNO2vsHSmLQHzbXcQ4AAAAASUVORK5CYII=">
+    <link rel="stylesheet" href="/style.css">
+    <script src="notepad/main.js"></script>
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Insert fonts from google here-->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+      
+      
+body {
+background-color: #444444;
+text-align: center;
+}
+a{
+  font-family:'Overpass', sans-serif
+}
+a:link, a:visited{color: #999999}
+a:hover{color: white}
+
+div{
+    align-items:center ;
+    text-align:center;
+    justify-content: center;
+}
+html,body{margin:0;padding:0;height:100vh}
+h1,p{margin:0 0 1em}
+
+/*Extra google fonts not typically used on the website*/
+    </style>
+    
+    <script>
+    function saveData(text, filename) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+
+  document.body.removeChild(element);
+}
+
+function openFile(){
+var file = document.getElementById("file").files[0];
+var reader = new FileReader();
+reader.onload = function (e) {
+  var textArea = document.getElementById("TextImpt");
+  textArea.value=e.target.result
+  document.getElementById("Title").value=file.name
+  document.getElementById("theLabel").innerHTML="Select file - "+file.name
+  
+};
+reader.readAsText(file);
+}
+
+function changeSize(thatV){
+var impt = document.getElementById("TextImpt")
+impt.style.fontSize = thatV+'pt'
+}
+
+function changeFont(that){
+var TextImpt = document.getElementById("TextImpt")
+var fonts = [
+  {id:"RO",font:"'Roboto',sans-serif"},
+  {id:"RM",font:"'Roboto Mono', monospace"},
+  {id:"OP",font:"'Overpass',sans-serif"},
+  {id:"PS",font:"'Press Start 2P',cursive"},
+  {id:"NO",font:""},
+  {id:"5",font:"'Roboto',sans-serif"},
+  {id:"6",font:"'Roboto',sans-serif"},
+  
+]
+fonts.forEach(function(val,index,arr){
+if (val.id == that.value){
+  TextImpt.style.fontFamily=val.font
+}  
+})
+}
+    </script>
+  </head>
+  <body>
+    <a href="https://roberttbs.tk">(C) RobertTBS, 12/21/22</a><br>
+<input id="Title" placeholder="Filename" style="width:90%">
+<textarea  style="width:90%; height:80%" type="text" id="TextImpt" placeholder="Enter notes here"></textarea>
+    <input type="file" id="file" placeholder="Open" style="width:0px" class="hidden" onchange="openFile()">
+    <button style="width:90%"><label for="file" style="display: block; width:100%" id="theLabel">Select file</label></button>
+    
+    <button onclick="saveData(document.getElementById('TextImpt').value, document.getElementById('Title').value);" style="width:90%">Save</button>
+    
+<input type="range" min="4" max="120" value="12" class="slider" id="aRange" placeholder="Text size" onchange="changeSize(this.value)" style="width:45%">
+<select onchange="changeFont(this)" style="width:45%"> 
+<option value = "NO">SysDefault</option>  
+<option value = "RO">Roboto</option>  
+<option value = "RM">Roboto Mono</option>  
+<option value = "OP">Highway Gothic (Overpass)</option>  
+<option value = "PS">Press Start 2P</option>    
+</select>  
+  
+  </body>
+</html>

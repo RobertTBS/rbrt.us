@@ -1,0 +1,15 @@
+<p id="UUID">UUID</p>
+<script>
+function getMachineId() {
+    
+    let machineId = localStorage.getItem('MachineId');
+    
+    if (!machineId) {
+        machineId = crypto.randomUUID();
+        localStorage.setItem('MachineId', machineId);
+    }
+
+    return machineId;
+}
+document.getElementById("UUID").innerHTML = getMachineId()
+</script>

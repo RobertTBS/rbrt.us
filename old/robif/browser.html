@@ -1,0 +1,39 @@
+<html>
+<head>
+<style>
+body{
+background-color: #444444;
+  text-align:center;
+}
+</style>
+<script>
+  
+ function goTo(url){
+   var iframe = document.getElementById("if")
+   var urlbox = 
+   iframe.src = url
+   urlbox.placeholder = url
+ };
+  
+  
+  document.title = self.crypto.getRandomValues(new BigUint64Array(1));
+  window.onkeydown = function (gfg) {
+  if (gfg.keyCode === 18) {
+      
+        var prmpt = prompt("RobertTBS.tk/")
+        document.getElementById("if").src = "https://roberttbs.tk/"+prmpt
+  }
+};
+  </script>
+  <script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
+  <script src = "https://roberttbs.tk/robif/ver.js" type="module"></script>
+  <script type="module" src="./byp.js?"></script>
+  <script>var barIsDeclared = true; try{ bar; } catch(e) {if(current_ver == "ReferenceError"){current_ver = 0;}}; var version = .03; if (version < current_ver){alert("Newer RobIF available. Your version:"+version+" New version: "+current_ver)} ;</script>
+  </head>
+<body>
+<input placeholder="https://frogfind.com" type="text" id="url" style="width:90%"><button id="button" onclick="goTo(url.value)" style="width:10%">Go to</button>
+<!--<button onclick="goTo('http://frogfind.com')" style="align:left">🏠</button>-->
+<button onclick="goTo('http://frogfind.com')">FrogFind</button><button onclick="goTo('https://roberttbs.tk/')">RobertTBS.tk</button><button onclick="goTo('https://www.innateblogger.com/p/online-video-player.html')">Video player</button><button onclick="goTo('https://openstreetmap.org')">OpenStreetMap</button>
+<iframe is = "x-frame-bypass" id = "if" src="https://frogfind.com" style="height: 100%; width:100%;"></iframe>
+</body>
+</html>

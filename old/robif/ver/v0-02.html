@@ -1,0 +1,21 @@
+<html>
+<head>
+<style>
+body{
+background-color: #444444;
+  
+}
+</style>
+<script src="https://roberttbs.tk/robif/ver.js?random=<?php echo filemtime('https://roberttbs.tk/robif/ver.js'); ? "></script>
+<script>
+    document.title = self.crypto.getRandomValues(new BigUint64Array(1));
+        var version = 0.02
+        if (current_ver > version){
+          alert("This version is old! This version: "+version+" New version: "+current_ver+" Go to roberttbs.tk/robif/ver/ to retrieve new page")
+        }
+  </script>
+  </head>
+<body>
+<iframe id = "if" src="https://roberttbs.tk/robif/browser.html" style="height: 100%; width:100%; border:0px;"></iframe>
+</body>
+</html>

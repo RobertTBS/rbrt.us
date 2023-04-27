@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Overpass&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+      button{
+        margin:2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color:#999999; font-family:'Overpass',sans-serif">ROBERTTBS.TK/OLD</h1>
+    <p style="color:#999999; font-family:'Overpass',sans-serif">These pages are depriciated and are quite unpredictable and dangerous. Use at your own risk (JS required)</p>
+    <script>
+  var urls = [
+  {url:"/",name:"------CURRENT HOME------"},
+  {url:"/old/2021index.html",name:"old index 2020?"},
+  {url:"/old/oldindex22.html",name:"old index 2022"},
+  {url:"/old/offline.html",name:"oflline page (OLD)"},
+  {url:"/old/contact.html",name:"old contact 2021"},
+  {url:"/old/phone-img.html",name:"phonez image"},
+  {url:"/old/nogaurdian.html",name:"noguardian1"},
+  {url:"/old/nogaurdian2.html",name:"noguardian2"},
+  {url:"/old/classends",name:"old class ending notifyer"},
+  {url:"/old/robertclicker",name:"Robert Clicker"},
+  {url:"/old/ruler",name:"Ruler"},
+  {url:"/old/vids",name:"Vids (12/2022)"},
+  //{url:"/old/radio",name:"Robert Radio"},
+  {url:"/old/stream",name:"Robert Stream"},
+  {url:"/old/logopoll.html",name:"UNUSED logopoll"},
+  {url:"/old/grawhill.html",name:"GRAWHILL"},
+  {url:"/old/browserstart.html",name:"Browserstart"},
+  {url:"/old/notmine",name:"NotMyProjects"},
+  {url:"/old/earlyout.html",name:"Original Live Notifications"},
+  {url:"/old/encrypter.html",name:"A project to encrypt data"},
+  {url:"/old/radio",name:"Robert Radio"},
+  {url:"/old/battleship",name:"Battleship"},
+  {url:"/old/dna.html",name:"DNA/Text converter for Biology"},
+];//{url:"",name:""},
+urls.forEach(function(val,index,arr){
+    var b = document.createElement("a");
+    //item.href=val.url
+   // b.onclick="window.location.href="+toString(val.url);
+    b.innerHTML=val.name;
+    b.style=b.style+"font-family:'Overpass', sans-serif;"
+  //a.appendChild(b);  
+  b.href=val.url;
+  document.body.appendChild(b)
+  c = document.createElement("br")
+  document.body.appendChild(c)
+  
+});
+    </script>
+  </body>
+</html>

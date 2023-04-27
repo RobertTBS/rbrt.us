@@ -1,0 +1,20 @@
+
+body {
+background-color: #444444;
+/*background-image: url("https://cdn.glitch.com/d354bb74-db20-4c6c-90db-b2646d509a55/PXL_20210526_014527428.jpg?v=1665155396000");*/
+text-align: center;
+background-position: center bottom;
+background-repeat: no-repeat;
+   align-items:center ;
+     justify-content: center;
+}
+div{
+   align-items:center ;
+  text-align:center;
+     justify-content: center;
+}
+a{
+  font-family:'Overpass', sans-serif
+}
+a:link, a:visited{color: #999999}
+a:hover{color: white}
