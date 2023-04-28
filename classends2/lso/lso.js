@@ -270,4 +270,4 @@ function update(vpd,h,m){
        ele.style="font-family:'Overpass',sans-serif; color:white";
        ele.innerHTML = 'Period '+vpd+": "+addToday(h,m);
        document.body.appendChild(ele); 
-}}//What
+}}
