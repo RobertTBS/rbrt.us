@@ -31,9 +31,9 @@ const xScr = getCookie("X")
 const oScr = getCookie("O")
 if (xScr==undefined&&oScr==undefined){
   O.innerHTML="0";
-  setCookie("O",0)
+  setCookie("O","0")
   X.innerHTML="0";
-  setCookie("X",0)
+  setCookie("X","0")
 }else{
   O.innerHTML=oScr;
   X.innerHTML=xScr;
@@ -52,10 +52,10 @@ function reset(){
   selectable=true
 }
 function resetS(){
-  X.innerHTML = 0;
-  O.innerHTML = 0;
-  setCookie("O",0);
-  setCookie("X",0);
+  X.innerHTML = "0";
+  O.innerHTML = "0";
+  setCookie("O","0");
+  setCookie("X","0");
 }
 
 function swPlr(){
