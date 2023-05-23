@@ -1,4 +1,4 @@
-if (window.location.toString().substring(0,14) == "https://rbrt.g"){alert("You are using the test site!")}
+if (window.location.toString().substring(0,14) == "https://rbrt-web.g"){alert("You are using the test site!")}
 function timeto(){
 let time = 0;
 let now = new Date()
