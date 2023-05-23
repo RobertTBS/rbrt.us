@@ -7,3 +7,4 @@ let time_difference = to.getTime() - now.getTime();
 let days = time_difference / (1000 * 60 * 60 * 24);  
 document.getElementById("time").innerHTML = Math.floor(days)+2+" days"
 }
+timeto()
