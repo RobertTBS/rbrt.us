@@ -19,7 +19,9 @@ div{
 }
 html,body{margin:0;padding:0;height:100vh}
 h1,p{margin:0 0 1em}
-
+h1{
+  font-family:'Press Start 2P',sans-serif;
+}
 
 input,textarea,button,select{
 border-radius:10px;
