@@ -22,7 +22,7 @@ document.getElementById("schoolend").innerHTML = Hour+" hours, "+Min+" minutes, 
 }
 function schoolstart(){
 const currentDate = new Date();
-const targetDate = new Date("August 16, 2023");
+const targetDate = new Date("August 16, 2023 08:15:00");
 const timeDiff = targetDate.getTime() - currentDate.getTime();
 
 const Day = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
