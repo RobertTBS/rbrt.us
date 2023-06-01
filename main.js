@@ -9,17 +9,6 @@ document.getElementById("time").innerHTML = Math.floor(days)+2+" days"
 }
 timeto()
 
-function schoolend(){
-const currentDate = new Date();
-const targetDate = new Date("May 31, 2023 13:15:00");
-const timeDiff = targetDate.getTime() - currentDate.getTime();
-
-const Day = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-const Hour = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-const Min = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-const Sec = Math.floor((timeDiff % (1000 * 60)) / 1000);
-document.getElementById("schoolend").innerHTML = Hour+" hours, "+Min+" minutes, and "+Sec+" seconds"
-}
 function schoolstart(){
 const currentDate = new Date();
 const targetDate = new Date("August 16, 2023 08:15:00");
@@ -31,7 +20,5 @@ const Min = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
 const Sec = Math.floor((timeDiff % (1000 * 60)) / 1000);
 document.getElementById("schoolstart").innerHTML = Day+" days, "+Hour+" hours, "+Min+" minutes, and "+Sec+" seconds"
 }
-schoolend()
 schoolstart()
-setInterval(schoolend,1000)
 setInterval(schoolstart,1000)
