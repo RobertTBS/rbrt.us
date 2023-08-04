@@ -1,0 +1,9 @@
+label,span{
+  font-family:'Overpass',sans-serif;
+}
+h1>span{
+  font-family:'Press Start 2P',sans-serif;
+}
+input[type="checkbox"]:checked {
+  accent-color: #3498db;
+}
