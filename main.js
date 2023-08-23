@@ -11,7 +11,7 @@ timeto()
 
 function schoolstart(){
 const currentDate = new Date();
-const targetDate = new Date("August 23, 2023 08:15:00");
+const targetDate = new Date("May 30, 2024 13:15:00");
 const timeDiff = targetDate.getTime() - currentDate.getTime();
 
 const Day = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
