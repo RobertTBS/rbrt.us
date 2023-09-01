@@ -1,0 +1,11 @@
+Paste the regular OSM/OGF link here and send it to Robert
+<input placeholder="link here" onchange="change(this.value)" id="change">
+<script>
+  function change(val){
+let place = val;
+let zoom = place.split("map=")[1].split("/")[0];
+let lat = place.split("map=")[1].split("/")[1].split("/")[0];
+let lng = place.split("map=")[1].split("/")[2];
+alert("{lat:"+lat+",lng:"+lng+",zoom:"+(zoom-1)+"},");
+  }
+</script>

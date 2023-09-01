@@ -28,7 +28,7 @@
     <h1>Where R U</h1>
     <h3>The geoguessr-like game where you are given a preview of a location on your choice of openstreetmap or opengeofiction, and you must find the location only using your mind. The left box is the preview box, where you will explore your surroundings. Zoom and click on the correct location on the right box to see how well you did. The lower the score, the better.</h3>
     <h2 style="color:#3498db">OSM Edition</h2>
-    <button onclick="reset()">Reset View Map</button><button onclick="next()">Next Challenge</button>
+    <button onclick="reset()">Reset View Map</button><button onclick="next()">Next Challenge</button><button onclick="window.location.href='/whereru/index.html?rand'">Complete Randomness Mode</button>
     <div style="">
       <div id="map" style="height:350px;width:350px;display:inline-block;"></div>
       <span>     </span>
@@ -39,25 +39,37 @@
   
     <!--Leaflet scripts-->
     <script>
-      const dft = [41.958,-93.390,7]//Default / Iowa - LAT LNG ZOOM
+      const dft = [41.958,-93.390,6]//Default / Iowa - LAT LNG ZOOM
       const options = [
         {lat:41.79346,lng:-93.52585,zoom:16}, //Elkhart Iowa
-        {lat:41.81567,lng:-93.61425,zoom:16} //NP HS
+        {lat:41.81567,lng:-93.61425,zoom:17}, //NP HS
+        {lat:43.2045,lng:-91.9523,zoom:12}, //Spillville
+        {lat:42.8916,lng:-92.3132,zoom:13}, //Frederika
+        {lat:41.4348,lng:-93.8868,zoom:12},//~Winterset
+        {lat:41.6703,lng:-93.6412,zoom:15}, //Saylorville
       ]
-      let optn = options[Math.floor(Math.random() * options.length)]
+      let optn = options[Math.floor(Math.random() * options.length+1)]
       
+      const urlParams = new URLSearchParams(window.location.search);
+      const rand = urlParams.get('rand')
+      if (rand != undefined){
+        optn = {lat:Math.random() * (43.5 - 40.5) + 40.5,   lng:(0-(Math.random() * (95.87 - 89.9) + 89.9)), zoom:14}
+        console.log(optn)
+      }
 
       let lat = optn.lat
       let lng = optn.lng
       let zoom = optn.zoom
       
       //Get cookie
-      const pts = document.getElementById("pts")
-      function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-      }
+      function getCookie(cookieName) {
+        let cookie = {};
+        document.cookie.split(';').forEach(function(el) {
+          let [key,value] = el.split('=');
+          cookie[key.trim()] = value;
+        })
+        return cookie[cookieName];
+      }  
       
       let score = getCookie("WhereRU_Score")
       if (score == undefined){
@@ -134,7 +146,7 @@
       function clearScore(){
         const pts = document.getElementById("pts")
         pts.innerHTML = 0
-        document.cookie = "WhereRU_Score=0;SameSite=None; Secure"
+        document.cookie = "WhereRU_Score=0;SameSite=None; Secure;expires=9999999999999999999999999999;"
       }
     </script>
   </body>
