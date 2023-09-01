@@ -1,0 +1,25 @@
+label,span{
+  font-family:'Overpass',sans-serif;
+}
+h1>span,h2,h2>span{
+  font-family:'Press Start 2P',sans-serif;
+}
+input[type="checkbox"]:checked {
+  accent-color: #3498db;
+}
+.times,.schedule{
+  border: 2px solid red;
+  display:inline-block;
+  width:40%;
+  height:100%;
+  margin:0;
+}
+.times>span,.schedule>span{
+  margin:0;
+}
+.heightbox{
+  border: 2px solid green;
+  display:inline-block;
+  width:90%;
+  height:65%;
+}
