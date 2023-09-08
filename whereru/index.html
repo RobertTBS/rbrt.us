@@ -28,14 +28,14 @@
     <h1>Where R U</h1>
     <h3>The geoguessr-like game where you are given a preview of a location on your choice of openstreetmap or opengeofiction, and you must find the location only using your mind. The left box is the preview box, where you will explore your surroundings. Zoom and click on the correct location on the right box to see how well you did. The lower the score, the better.</h3>
     <h2 style="color:#3498db">OSM Edition</h2>
-    <button onclick="reset()">Reset View Map</button><button onclick="next()">Next Challenge</button><button onclick="window.location.href='/whereru/index.html?rand'">Complete Randomness Mode</button>
+    <button onclick="reset()">Reset View Map</button><button onclick="next()">Next Challenge</button><!--<button onclick="window.location.href='/whereru/index.html?rand'">Complete Randomness Mode</button>-->
     <div style="">
-      <div id="map" style="height:350px;width:350px;display:inline-block;"></div>
+      <div id="map" ></div>
       <span>     </span>
-      <div id="map2" style="height:350px;width:350px;display:inline-block;"></div>
+      <div id="map2" ></div>
     </div>
-    <h2><span>Points: </span><span id="pts">0</span>  <button onclick="clearScore()">Clear</button></h2>
-    <h3><a href="/whereru/ogf.html">OGF Edition</a></h3>
+    <h2><span>Remaining Points: </span><span id="pts">0</span> - Tries: <span id="trys">00</span>   <button onclick="clearScore()">Clear</button></h2>
+    <!--<h3><a href="/whereru/ogf.html">OGF Edition</a></h3>-->
   
     <!--Leaflet scripts-->
     <script>
@@ -52,10 +52,10 @@
       
       const urlParams = new URLSearchParams(window.location.search);
       const rand = urlParams.get('rand')
-      if (rand != undefined){
+      //if (rand != undefined){
         optn = {lat:Math.random() * (43.5 - 40.5) + 40.5,   lng:(0-(Math.random() * (95.87 - 89.9) + 89.9)), zoom:14}
         console.log(optn)
-      }
+      //}
 
       let lat = optn.lat
       let lng = optn.lng
@@ -73,14 +73,22 @@
       
       let score = getCookie("WhereRU_Score")
       if (score == undefined){
-        score=0
+        score=50
       }
       pts.innerHTML = score;
       console.log(score)
       
       
+      let tries = getCookie("WhereRU_Tries")
+      if (tries == undefined){
+        tries=0
+      }
+      trys.innerHTML = tries;
+      console.log(tries)
+      
+      
       //Preview map
-      let map = L.map('map', {scrollWheelZoom: false}).setView([lat,lng], zoom);
+      let map = L.map('map', {scrollWheelZoom: false,touchZoom:false}).setView([lat,lng], zoom);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
@@ -129,10 +137,22 @@
           [lat,lng]
         ]).addTo(LG);
         
-        let scr=Math.round((parseFloat(score)+Math.round(totmi*100)/100)*100)/100
+        let scr=Math.round((parseFloat(score)-Math.round(totmi*100)/100)*100)/100
         pts.innerHTML = scr
+        tries++
+        document.cookie = "WhereRU_Tries="+tries+";SameSite=None; Secure"
+        trys.innerHTML = tries
         document.cookie = "WhereRU_Score="+scr+";SameSite=None; Secure"
-        score=parseFloat(score)+Math.round(totmi*100)/100
+        score=parseFloat(score)-Math.round(totmi*100)/100
+        
+        if (score <= 0){
+          if (score<0){
+            score=0
+          }
+          alert("You lose! You continued for "+tries+" tries.")
+          clearScore()
+          next()
+        }
       }
         
 
@@ -145,8 +165,11 @@
       }
       function clearScore(){
         const pts = document.getElementById("pts")
-        pts.innerHTML = 0
-        document.cookie = "WhereRU_Score=0;SameSite=None; Secure;expires=9999999999999999999999999999;"
+        pts.innerHTML = 50
+        trys.innerHTML = 0
+        tries=0
+        document.cookie = "WhereRU_Score=50;SameSite=None; Secure;expires=9999999999999999999999999999;"
+        document.cookie = "WhereRU_Tries=0;SameSite=None; Secure;expires=9999999999999999999999999999;"
       }
     </script>
   </body>

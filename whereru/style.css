@@ -1,3 +1,14 @@
 h2,h3{
   font-family:'overpass',sans-serif;
 }
+h1,h2,h3,p,button,iframe{
+  margin:0
+}
+#map,#map2{
+  height:350px;
+  width:60%;
+  display:inline-block;
+}
+#map{
+  width:350px;
+}
