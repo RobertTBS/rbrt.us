@@ -10,3 +10,6 @@ h1,h2,h3,p,button,iframe{
   display:inline-block;
   min-width:350px;
 }
+#map{
+  max-width:350px;
+}
