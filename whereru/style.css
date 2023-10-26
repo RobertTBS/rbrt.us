@@ -9,7 +9,7 @@ h1,h2,h3,p,button,iframe{
   width:60%;
   display:inline-block;
   min-width:350px;
-  cursor: cell,auto;
+  cursor: cell;
 }
 #map{
   max-width:350px;
