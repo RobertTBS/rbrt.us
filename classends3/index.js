@@ -116,7 +116,7 @@ function calculate(){ //Runs every time the data element is changed, about once 
   document.title = title;
   
   function notif(){
-    const notification = new Notification(title,{tag:'notif',body:"Period "+pd+" ends in "+title, silent:true, renotify: true, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});  
+    const notification = new Notification(title,{tag:'notif',body:"Period "+pd+" ends in "+title, silent:true, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});  
   }
          
   if (notify==true){

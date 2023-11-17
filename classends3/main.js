@@ -166,4 +166,9 @@ function addToScreen(){
   dataTransfer.innerHTML = JSON.stringify(Times);
 }
 
-setInterval(calc,1000) 
+//setInterval(calc,1000) 
+let work = new Worker('/classends3/worker.js');
+work.onmessage = (event) => {
+  calc();
+};
+work.postMessage(0);
