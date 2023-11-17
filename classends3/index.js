@@ -79,8 +79,7 @@ function calculate(){ //Runs every time the data element is changed, about once 
        //alert(least[0])
       if (least[0] == 0){
         least[0] = innerArr.length-4
-
-      }else{
+      }else if (least[0] > innerArr.length-4){
         least[0] = innerArr.length-4
       }
       
