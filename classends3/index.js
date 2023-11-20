@@ -64,11 +64,19 @@ function calculate(){ //Runs every time the data element is changed, about once 
   });
 
   let least = [0,999999999] //PD, MS
+  let leastL = [0,999999999] //For lunches
   MultiArray.forEach((innerArr, indexX) => {
     innerArr.forEach((text,indexY) => {
-      if ((innerArr[startP])<least[1] && least[1] > 0 && innerArr[startP] < 0){
+      //For all non-lunch periods
+      if ((innerArr[startP])<least[1] && least[1] > 0 && innerArr[startP] < 0 && innerArr[0] == dateType && innerArr[1].charAt(0) != "L"){
         least[0] = innerArr[1];
         least[1] = innerArr[startP];
+        document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.style.backgroundColor='green';
+      }
+      if ((innerArr[startP])<least[1] && least[1] > 0 && innerArr[startP] < 0 && innerArr[0] == dateType && innerArr[1].charAt(0) == "L"){
+        leastL[0] = innerArr[1];
+        leastL[1] = innerArr[startP];
+        document.getElementById("TYPE-"+dateType+"|PD-"+leastL[0]).parentElement.style.backgroundColor='darkgreen';
       }
     })
     
@@ -84,7 +92,7 @@ function calculate(){ //Runs every time the data element is changed, about once 
       }
       
       //console.log(dateType+" "+least[0])
-      document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.style.backgroundColor='green';
+      //document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.style.backgroundColor='green';
       if (simple){
         let children = document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.parentElement.getElementsByTagName("tr")
         for(var i=0; i<children.length; i++) {
