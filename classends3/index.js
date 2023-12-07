@@ -9,6 +9,7 @@ let simple = document.getElementById("AllPeriodsToggle").checked||false;
 let dateType = "NORM";
 let notify = document.getElementById("Notify").checked || false;
 const select = document.getElementById("startP");
+let offset = 0
 
 async function wakelock(){     //Chrome wake lock
   let wakeLock = null;
@@ -27,7 +28,8 @@ function makeDate(givenDate){
   const Hr = givenDate.toString().split(",")[3] | 0;
   const Min = givenDate.toString().split(",")[4] | 0;
   const now = new Date();
-  return new Date(now.getFullYear().toString()+"/"+(now.getMonth()+1).toString()+"/"+now.getDate().toString()+", "+Hr.toString()+":"+Min.toString())
+  let date = new Date(now.getFullYear().toString()+"/"+(now.getMonth()+1).toString()+"/"+now.getDate().toString()+", "+Hr.toString()+":"+Min.toString())
+  return new Date(date.getTime() + offset*1000)
 }
 if (new Date().getDay() == 1){
   dateType = "LS";
@@ -51,6 +53,12 @@ function calculate(){ //Runs every time the data element is changed, about once 
   });
   
   MultiArray.forEach((innerArr, indexX) => {
+    if (innerArr[0] == "OFFSET"){
+      offset = innerArr[1]
+    }
+    if (innerArr[0] == "MESSAGE"){
+      document.getElementById("custMessage").innerHTML = innerArr[1].toString()
+    }
     innerArr.forEach((val,indexY) => {
       if (innerArr[0] == dateType && innerArr[indexY] != dateType){
         //console.log(innerArr[indexY])

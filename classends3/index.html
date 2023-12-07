@@ -17,6 +17,8 @@
     <!--Insert fonts from google here-->
       <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Overpass&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!--Progressive Web App-->
+    <link rel="manifest" href="/classends3/manifest.json" />
     <!--End header-->
     <style>
       table{
@@ -55,7 +57,7 @@
     <table class="output"></table>
 
     <hr>
-    <span style="font-family:'Overpass',sans-serif;color:#999999;">Is a time wrong? Leave a comment on this </span><a href="https://docs.google.com/spreadsheets/d/14Q-XX0Vf2wf1Da-Gdc_d5F3tHVJTAg5V-vH2RWS9f0A/edit">Google Sheets</a>
+    <span style="font-family:'Overpass',sans-serif;color:#999999;" id="custMessage">Times are calculated with an offset.</span><br><span style="font-family:'Overpass',sans-serif;color:#999999;">Is a time wrong? Leave a comment on this </span><a href="https://docs.google.com/spreadsheets/d/14Q-XX0Vf2wf1Da-Gdc_d5F3tHVJTAg5V-vH2RWS9f0A/edit">Google Sheets</a><br>
     <data id="ArrTransfer" style="display:none">[]</data> <!--This is to transmit the array between files-->
     <script src="/classends3/main.js"></script>
     <script src="/classends3/index.js"></script>
