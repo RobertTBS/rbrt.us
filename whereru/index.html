@@ -26,29 +26,20 @@
   <body>
     <a href="/">home</a>
     <h1>Where R U</h1>
-    <h3>The geoguessr-like game where you are given a preview of a location on your choice of openstreetmap or opengeofiction, and you must find the location only using your mind. The left box is the preview box, where you will explore your surroundings. Zoom and click on the correct location on the right box to see how well you did. The lower the score, the better.</h3>
-    <h2 style="color:#3498db">OSM Edition</h2>
+    <h3>The geoguessr-like game where you are given a preview of a location on openstreetmap, and you must find the location in Iowa only using your mind and eye. The left box is the preview box, where you will explore your surroundings. Zoom and click on the correct location on the right box to see how well you did. If there is no satellite photography, you are likely outside Iowa</h3>
     <button onclick="reset()">Reset View Map</button><button onclick="next()">Next Challenge</button><!--<button onclick="window.location.href='/whereru/index.html?rand'">Complete Randomness Mode</button>-->
-    <div style="">
+    <div style="zIndex:0;">
       <div id="map" ></div>
       <span>     </span>
       <div id="map2" ></div>
     </div>
-    <h2><span>Remaining Points: </span><span id="pts">0</span> - Tries: <span id="trys">00</span>   <button onclick="clearScore()">Clear</button></h2>
+    <button style="width:80%" onclick="yesSelect()">SELECT</button>
+    <h2><!--<span>Remaining Points: </span><span id="pts">0</span> - -->Tries: <span id="trys">00</span>   <button onclick="clearScore()">Clear</button></h2>
     <!--<h3><a href="/whereru/ogf.html">OGF Edition</a></h3>-->
-  
     <!--Leaflet scripts-->
     <script>
       const dft = [41.958,-93.390,6]//Default / Iowa - LAT LNG ZOOM
-      const options = [
-        {lat:41.79346,lng:-93.52585,zoom:16}, //Elkhart Iowa
-        {lat:41.81567,lng:-93.61425,zoom:17}, //NP HS
-        {lat:43.2045,lng:-91.9523,zoom:12}, //Spillville
-        {lat:42.8916,lng:-92.3132,zoom:13}, //Frederika
-        {lat:41.4348,lng:-93.8868,zoom:12},//~Winterset
-        {lat:41.6703,lng:-93.6412,zoom:15}, //Saylorville
-      ]
-      let optn = options[Math.floor(Math.random() * options.length+1)]
+      let optn = []
       
       const urlParams = new URLSearchParams(window.location.search);
       const rand = urlParams.get('rand')
@@ -56,7 +47,7 @@
       while (redo==true){
         optn = {lat:Math.random() * (43.5 - 40.5) + 40.5,   lng:(0-(Math.random() * (96.6 - 89.9) + 89.9)), zoom:14};
         redo=false
-        //alert(optn.lat+" "+optn.lng)
+        //Detect if it is actually in Iowa using basic coordinates
         if (optn.lng > -90.9 && optn.lat < 41.35){
           redo=true;
         }
@@ -69,6 +60,8 @@
       let lng = optn.lng
       let zoom = optn.zoom
       
+      
+      var selectedParams;
       //Get cookie
       function getCookie(cookieName) {
         let cookie = {};
@@ -79,12 +72,12 @@
         return cookie[cookieName];
       }  
       
-      let score = getCookie("WhereRU_Score")
+      /*let score = getCookie("WhereRU_Score")
       if (score == undefined){
         score=50
       }
       pts.innerHTML = score;
-      console.log(score)
+      console.log(score)*/
       
       
       let tries = getCookie("WhereRU_Tries")
@@ -96,34 +89,77 @@
       
       
       //Preview map
-      let map = L.map('map', {scrollWheelZoom: false,touchZoom:false}).setView([lat,lng], zoom);
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
-      }).addTo(map);
+      });
+	    var sat = L.tileLayer.wms("https://ortho.gis.iastate.edu/arcgis/services/ortho/naip_2023_nc/ImageServer/WMSServer", {
+        layers: 'naip_2023_nc',
+    		format: 'image/png',
+    		transparent: true,
+    		attribution: "ISU GIS Facility, IA DNR",
+		  });
+      var GMaps = L.tileLayer('https://mt1.google.com/vt/lyrs=h&x={x}&y={y}&z={z}', {
+        maxZoom: 19,
+        attribution: '© Google',
+      });
+      var map = L.map('map', {
+        center: [lat, lng],
+        zoom: zoom,
+        layers: [osm],
+        //scrollWheelZoom: false,
+        //touchZoom:false,
+        minZoom: zoom,
+      });
+      var satOver = L.layerGroup([sat, GMaps])
+      var baseMaps = {
+        "OpenStreetMap": osm,
+        "Satellite":satOver
+      };
+      
+      var layerControl = L.control.layers(baseMaps).addTo(map);
       let mapBox = document.getElementById("map")
-      document.getElementsByClassName("leaflet-control-zoom-in")[0].style="display:none"
-      document.getElementsByClassName("leaflet-control-zoom-out")[0].style="display:none"
+      //document.getElementsByClassName("leaflet-control-zoom-in")[0].style="display:none"
+      //document.getElementsByClassName("leaflet-control-zoom-out")[0].style="display:none"
       mapBox.style.overflow="hidden"
       let marker = L.marker([lat,lng]).addTo(map);
       
       
       //Click map
-      let map2 = L.map('map2').setView([dft[0], dft[1]], dft[2]);
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
-      }).addTo(map2);
+      });
+	    var sat = L.tileLayer.wms("https://ortho.gis.iastate.edu/arcgis/services/ortho/naip_2023_nc/ImageServer/WMSServer", {
+        layers: 'naip_2023_nc',
+    		format: 'image/png',
+    		transparent: true,
+    		attribution: "Iowa State University GIS Facility, Iowa DNR",
+		  });
+      var GMaps = L.tileLayer('https://mt1.google.com/vt/lyrs=h&x={x}&y={y}&z={z}', {
+        maxZoom: 19,
+        attribution: '© Google',
+      });
+      var map2 = L.map('map2', {
+        center: [dft[0], dft[1]],
+        zoom: dft[2],
+        layers: [osm]
+      });
+      var satOver = L.layerGroup([sat, GMaps])
+      var baseMaps = {
+        "OpenStreetMap": osm,
+        "Satellite":satOver
+      };
       
+      var layerControl = L.control.layers(baseMaps).addTo(map2);
       
       let LG = L.layerGroup().addTo(map2);
       
       function onMapClick(e) {
         LG.clearLayers()
-        
         let lat2 = e.latlng.toString().split(",")[0].split("(")[1]
         let lng2 = e.latlng.toString().split(", ")[1].split(")")[0]
-        
+        selectedParams = [lat,lng,lat2,lng2]
         //Distance formula
          	
 
@@ -137,30 +173,10 @@
         ft = Math.round(mi*5280%5280)
         mi = Math.round(mi)
 
-        
         var marker = L.marker([parseFloat(lat2), parseFloat(lng2)]).addTo(LG);
-        marker.bindPopup(mi+"mi "+ft+"ft").openPopup();
-        var polygon = L.polygon([
-          [lat2, lng2],
-          [lat,lng]
-        ]).addTo(LG);
+        //marker.bindPopup(mi+"mi "+ft+"ft").openPopup();
         
-        let scr=Math.round((parseFloat(score)-Math.round(totmi*100)/100)*100)/100
-        pts.innerHTML = scr
-        tries++
-        document.cookie = "WhereRU_Tries="+tries+";SameSite=None; Secure"
-        trys.innerHTML = tries
-        document.cookie = "WhereRU_Score="+scr+";SameSite=None; Secure"
-        score=parseFloat(score)-Math.round(totmi*100)/100
         
-        if (score <= 0){
-          if (score<0){
-            score=0
-          }
-          alert("You lose! You continued for "+tries+" tries.")
-          clearScore()
-          next()
-        }
       }
         
 
@@ -169,16 +185,64 @@
         map.setView([lat,lng],zoom)
       }
       function next(){
-        location.reload();
+        window.location = window.location
+        //location.reload();
       }
       function clearScore(){
-        const pts = document.getElementById("pts")
-        pts.innerHTML = 50
+        //const pts = document.getElementById("pts")
+        //pts.innerHTML = 50
         trys.innerHTML = 0
         tries=0
-        document.cookie = "WhereRU_Score=50;SameSite=None; Secure;expires=9999999999999999999999999999;"
+        //document.cookie = "WhereRU_Score=50;SameSite=None; Secure;expires=9999999999999999999999999999;"
         document.cookie = "WhereRU_Tries=0;SameSite=None; Secure;expires=9999999999999999999999999999;"
       }
+      function yesSelect(){
+        let lat = selectedParams[0];
+        let lng = selectedParams[1];
+        let lat2 = selectedParams[2];
+        let lng2 = selectedParams[3];
+                //Distance formula
+         	
+
+
+        const a = Math.sin((lat2-lat) * Math.PI/180/2) * Math.sin((lat2-lat) * Math.PI/180/2)+Math.cos(lat * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *Math.sin((lng2-lng) * Math.PI/180/2) * Math.sin((lng2-lng) * Math.PI/180/2);
+
+        let ft = 6371e3 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)) * 3.281
+        const totft = ft
+        let mi = ft/5280
+        const totmi = mi
+        ft = Math.round(mi*5280%5280)
+        mi = Math.round(mi)
+
+        var marker = L.marker([parseFloat(lat2), parseFloat(lng2)]).addTo(LG);
+        marker.bindPopup(mi+"mi "+ft+"ft").openPopup();
+        var polygon = L.polygon([
+          [lat2, lng2],
+          [lat,lng]
+        ]).addTo(LG);
+          
+          /*let scr=Math.round((parseFloat(score)-Math.round(totmi*100)/100)*100)/100
+          pts.innerHTML = scr
+          */
+          tries++
+          
+          document.cookie = "WhereRU_Tries="+tries+";SameSite=None; Secure"
+          trys.innerHTML = tries
+          /*document.cookie = "WhereRU_Score="+scr+";SameSite=None; Secure"
+          score=parseFloat(score)-Math.round(totmi*100)/100
+          
+          if (score <= 0){
+            if (score<0){
+              score=0
+            }
+            alert("You lose! You continued for "+tries+" tries.")
+            clearScore()
+            next()
+          }*/
+        }
     </script>
+    <br>
+    <h2>Sources 4 U:</h2>
+    <a href="https://www.iowahighways.org/highways/countyrd.html">County Highway Reference</a>
   </body>
 </html>
