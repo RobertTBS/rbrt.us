@@ -91,6 +91,7 @@ function weatherFor(city){
                     case "WSW": ThisTimespan.windDirection = -90-22.5; break;
                     default: break;
                   }
+                    ThisTimespan.windDirection = ThisTimespan.windDirection-180
                   
                   if (time==0){
                     //Set stuff
