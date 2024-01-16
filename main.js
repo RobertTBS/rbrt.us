@@ -114,11 +114,11 @@ function weatherFor(city){
               xmlhttp4.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                   let AlertsArr = JSON.parse(xmlhttp4.response).features;
+                  document.getElementById("AlertsBox").innerHTML = "";
                   AlertsArr.forEach(function(ThisEvent,time){
                     let p = document.createElement("p");
                     p.innerHTML = "<b>"+ThisEvent.properties.event+"</b>";
                     p.title = ThisEvent.properties.description +"\n\n" + ThisEvent.properties.instruction;
-                    document.getElementById("AlertsBox").innerHTML = "";
                     document.getElementById("AlertsBox").appendChild(p);
                   });
                 }
