@@ -26,3 +26,44 @@ div{
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+
+input,textarea,button,select{
+  border-radius:8px;
+  background:#444444;
+  border-style:solid;
+  border-color:#3498db;
+  font-family:"Overpass", sans-serif;
+  color:#2ecc71;
+}
+
+
+.Weather > hr{
+  margin:0;
+  padding:0;
+}
+.Weather > p, .Weather > button{
+  margin:0;
+  padding:0;
+}
+.Weather > .together > img{
+  width:4%;
+  height:4%
+}
+.Weather > input{
+  width:30%;
+}
+.Weather > .NowTemp{
+  color:orange;
+  display: inline-block;
+}
+.Weather > .NowTemp > .AlertsBox{
+  margin:0;
+  color:red;
+}
+.Weather > .NowTemp > .AlertsBox > p{
+  margin:0;
+}
+.Weather > .NowTemp > .AlertsBox >p:hover{
+  cursor:help;
+}
