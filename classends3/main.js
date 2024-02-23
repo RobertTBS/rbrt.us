@@ -64,7 +64,6 @@ function processRows(json) {
   })
   setDate()
 }
-
 //DATE CALCULATIONS
 function makeDate(givenDate){
   const Hr = givenDate.toString().split(",")[3] | 0;
@@ -132,7 +131,7 @@ function addToScreen(){
     innerArr.forEach((text,index) => {
       if (index == 0){
         ZeroVal = text;
-        if (text.charAt(0) == "."){
+        if (text.charAt(0) == "."){ //[1] is blank, because [5] is ISLABEL.
           text = text.substring(1);
           innerArr[2]='Period name';
           innerArr[3]='Time until start';
@@ -151,7 +150,7 @@ function addToScreen(){
         td.setAttribute("id", "TYPE-"+innerArr[0]+"|PD-"+innerArr[1])
       }
     })
-    /*if (ZeroVal.charAt(0) == "."){              //Uncomment if you dont add the lable to each day, currently on line 127 / 12 before this one
+    /*if (ZeroVal.charAt(0) == "."){              //Uncomment if you dont add the label to each day, currently on line 127 / 12 before this one
       const td = document.createElement('td');
       td.textContent = '';
       tr.appendChild(td);

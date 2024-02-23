@@ -1,3 +1,8 @@
+/*TODO:
+- Update page with a WebWorker to prevent it from freezing.
+\_https://stackoverflow.com/questions/13546493/how-to-avoid-freezing-the-browser-when-doing-long-running-computations-in-javasc
+*/
+
 Notification.requestPermission(); //TODO TOMORROW
 const Table = document.getElementById("output");
 let MultiArray = JSON.parse(document.getElementById('ArrTransfer').innerHTML); //Make a new array we can edit
@@ -10,6 +15,9 @@ let dateType = "NORM";
 let notify = document.getElementById("Notify").checked || false;
 const select = document.getElementById("startP");
 let offset = 0
+
+
+
 
 async function wakelock(){     //Chrome wake lock
   let wakeLock = null;
@@ -31,12 +39,8 @@ function makeDate(givenDate){
   let date = new Date(now.getFullYear().toString()+"/"+(now.getMonth()+1).toString()+"/"+now.getDate().toString()+", "+Hr.toString()+":"+Min.toString())
   return new Date(date.getTime() + offset*1000)
 }
-if (new Date().getDay() == 1){
-  dateType = "LS";
-  document.getElementById("TypeSelect").value = "LS";
-}
 
-// Updte the data when it is changed
+// Update the data when it is changed
 const elementToObserve = document.getElementById('ArrTransfer');
 const observer = new MutationObserver(() => {
   MultiArray = JSON.parse(document.getElementById('ArrTransfer').innerHTML);
@@ -45,7 +49,39 @@ const observer = new MutationObserver(() => {
 observer.observe(elementToObserve, { subtree: true, childList: true });
 
 
+let ran = false;
 function calculate(){ //Runs every time the data element is changed, about once per second.
+  
+  
+  if (ran==false){//Only runs once
+    ran=true;
+    document.getElementById("TypeSelect").innerHTML = ""; //Clear vals
+    MultiArray.forEach((innerArr, indexX) => {
+      if (innerArr[0] == "OFFSET"){
+        offset = innerArr[1]
+      }
+      if (innerArr[0] == "MESSAGE"){
+        document.getElementById("custMessage").innerHTML = innerArr[1].toString()
+      }
+      if (innerArr[0].charAt(0) == "-"){ //Detect Date Names and add them.
+        const option = document.createElement("option");
+        option.value = innerArr[0].substring(1);
+        option.innerHTML = innerArr[1];
+        document.getElementById("TypeSelect").appendChild(option);;
+      }
+    });
+    if (new Date().getDay() == 1){
+        if (confirm("Click OK if it is advisory, CANCEL if it is a regular Monday.") == true){
+          document.getElementById("TypeSelect").value = "LSA" ;
+          dateType = "LSA";
+        }else{
+          document.getElementById("TypeSelect").value = "LS" ;
+          dateType = "LS";
+        }
+      }
+  }
+  
+  
   document.getElementById("REMOVABLE").remove()
   MultiArray.forEach((innerArr, indexX) => {
     //console.log(("TYPE-"+innerArr[0]+"|PD-"+innerArr[1]))
@@ -53,12 +89,6 @@ function calculate(){ //Runs every time the data element is changed, about once 
   });
   
   MultiArray.forEach((innerArr, indexX) => {
-    if (innerArr[0] == "OFFSET"){
-      offset = innerArr[1]
-    }
-    if (innerArr[0] == "MESSAGE"){
-      document.getElementById("custMessage").innerHTML = innerArr[1].toString()
-    }
     innerArr.forEach((val,indexY) => {
       if (innerArr[0] == dateType && innerArr[indexY] != dateType){
         //console.log(innerArr[indexY])
@@ -73,7 +103,12 @@ function calculate(){ //Runs every time the data element is changed, about once 
 
   let least = [0,999999999] //PD, MS
   let leastL = [0,999999999] //For lunches
+  let currDate = new Date(); 
   MultiArray.forEach((innerArr, indexX) => {
+    if (currDate.getDate() != new Date().getDate()){ //Today is not the day it was loaded on.
+      least = [0,999999999];
+      leastL = [0,999999999];
+    }
     innerArr.forEach((text,indexY) => {
       //For all non-lunch periods
       if ((innerArr[startP])<least[1] && least[1] > 0 && innerArr[startP] < 0 && innerArr[0] == dateType && innerArr[1].charAt(0) != "L"){
@@ -81,6 +116,7 @@ function calculate(){ //Runs every time the data element is changed, about once 
         least[1] = innerArr[startP];
         document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.style.backgroundColor='green';
       }
+      //For lunches
       if ((innerArr[startP])<least[1] && least[1] > 0 && innerArr[startP] < 0 && innerArr[0] == dateType && innerArr[1].charAt(0) == "L"){
         leastL[0] = innerArr[1];
         leastL[1] = innerArr[startP];
@@ -106,7 +142,7 @@ function calculate(){ //Runs every time the data element is changed, about once 
         for(var i=0; i<children.length; i++) {
           children[i].style.display = 'none';
         }
-        document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.style.fontSize = '9.5vw';
+        document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.style.fontSize = '12vw';//9.5vw
         document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.style.fontWeight = '900';
         document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.style.display = 'block';
         document.getElementById("TYPE-"+dateType+"|PD-"+least[0]).parentElement.children[0].innerHTML="";
