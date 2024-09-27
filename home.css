@@ -36,6 +36,11 @@ input,textarea,button,select{
   font-family:"Overpass", sans-serif;
   color:#2ecc71;
 }
+hr {
+  border: 1px solid DarkGreen;
+  border-bottom: 1px solid black;
+  margin:5px;
+}
 
 
 .Weather > hr{
