@@ -23,7 +23,18 @@ document.getElementById("schoolstart").innerHTML = Day+" days, "+Hour+" hours, "
 schoolstart()
 setInterval(schoolstart,1000)
 
-//Weatyer widget code
+function winsupport(){
+const currentDate = new Date();
+const targetDate = new Date("October 14, 2025");
+const timeDiff = targetDate.getTime() - currentDate.getTime();
+
+const Day = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+document.getElementById("winsupport").innerHTML = Day+" days"
+}
+winsupport()
+setInterval(winsupport,1000)
+
+//Weather widget code
 
 const input = document.getElementById("CustomWeatherInput");
 input.addEventListener("keyup", (event) => {

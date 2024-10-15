@@ -1,10 +1,11 @@
 
 body {
 background-color: #444444;
-background-image: url("https://cdn.glitch.me/d354bb74-db20-4c6c-90db-b2646d509a55/PXL_20210526_014527428.jpg");
+/*background-image: url("https://cdn.glitch.me/d354bb74-db20-4c6c-90db-b2646d509a55/PXL_20210526_014527428.jpg");*/
+  background-image: url('https://cdn.glitch.global/782eb81c-c672-44cf-b500-e4669b3dc4f1/PXL_20210526_014527428_InfiniteRepeat.png?v=1729013986381');
 text-align: center;
-background-position: center bottom;
-background-repeat: no-repeat;
+background-position: center top 30%;
+background-repeat: repeat-y;
 }
 a{
   font-family:'Overpass', sans-serif
