@@ -1,0 +1,76 @@
+<body onload="notify()">
+<p>
+   Infinite notification maker. Must be used with HTTPS.
+</p>
+<button onclick="window.location.href='https://roberttbs.tk/infnotify.html';">
+  HTTPS
+</button>
+<button onclick="notify()" >
+  NOTIFY
+</button>
+<p>
+  
+</p>
+<button oonclick="window.location.href='https://roberttbs.tk/infnotify.html';" >
+  START NOTIFY
+</button>
+  <p>
+    
+  </p>
+  <button onclick="" >
+  STOP NOTIFY
+</button>
+<script>
+  function notify(){
+(async () => {
+   // create and show the notification
+const showNotification = () => {
+    // create a new notification
+    const notification = new Notification('INFNOTIFY', {
+        body: 'You have chosen the dark side my friend',
+        icon: 'https://cdn.glitch.com/d354bb74-db20-4c6c-90db-b2646d509a55%2Fthumbnails%2Fdownload.png?1616955895109',
+        vibrate: true
+    });
+
+    // close the notification after 10 seconds
+    //setTimeout(() => {
+    //    notification.close();
+    //}, 10 * 1000);
+
+    // navigate to a URL
+    notification.addEventListener('click', () => {
+        window.open('https://roberttbs.tk/infnotify.html', '_blank');
+    });
+}
+// show an error message
+const showError = () => {
+    const error = document.querySelector('.error');
+    error.style.display = 'block';
+    error.textContent = 'You blocked the notifications';
+}
+let granted = false;
+
+if (Notification.permission === 'granted') {
+    granted = true;
+} else if (Notification.permission !== 'denied') {
+    let permission = await Notification.requestPermission();
+    granted = permission === 'granted' ? true : false;
+}
+
+// show notification or the error message 
+granted ? showNotification() : showError();
+  
+
+
+})()};
+  //infinite
+
+  //loop
+
+var myInterval = setInterval(function() {
+notify()
+}, 100);
+
+  
+</script>
+</body>

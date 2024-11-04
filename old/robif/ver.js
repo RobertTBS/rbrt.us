@@ -1,0 +1,1 @@
+var current_ver = .02

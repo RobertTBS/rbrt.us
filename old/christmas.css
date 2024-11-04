@@ -1,0 +1,27 @@
+
+body {
+background-color: #444444;
+background-image: url("https://cdn.glitch.global/d354bb74-db20-4c6c-90db-b2646d509a55/IMG_20221216_155257069.jpg"),url("https://cdn.glitch.global/d354bb74-db20-4c6c-90db-b2646d509a55/lights.gif");
+text-align: center;
+background-size:cover;
+background-position: center center,center top;
+background-repeat: no-repeat,repeat;
+}
+bkg{
+background-image: url("https://cdn.glitch.global/d354bb74-db20-4c6c-90db-b2646d509a55/lights.gif");
+text-align: center;
+background-size:cover;
+background-position: center center;
+background-repeat: repeat;
+}
+a{
+  font-family:'Overpass', sans-serif
+}
+a:link, a:visited{color: /*#999999*/#3498db}
+a:hover{color: white}
+
+div{
+    align-items:center ;
+    text-align:center;
+    justify-content: center;
+}

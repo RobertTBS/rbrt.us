@@ -1,0 +1,31 @@
+<html>
+<head>
+<style>
+body{
+background-color: #444444;
+}
+</style>
+  <script src="https://roberttbs.tk/robif/ver.js?random=<?php echo filemtime('https://roberttbs.tk/robif/ver.js');?"></script>
+<script>
+  document.title = self.crypto.getRandomValues(new BigUint64Array(1));
+      document.title = self.crypto.getRandomValues(new BigUint64Array(1));
+        var version = 0.01
+        if (current_ver > version){
+          alert("This version is old! This version: "+version+" New version: "+current_ver+" Go to roberttbs.tk/robif/ver/ to retrieve new page")
+        }
+  
+  
+  window.onkeydown = function (gfg) {
+  if (gfg.keyCode === 18) {
+      
+        var prmpt = prompt("RobertTBS.tk/")
+        document.getElementById("if").src = "https://roberttbs.tk/"+prmpt
+  }
+};
+  </script>
+</head>
+<body>
+<p style="text-align:center;">Press ALT to change directory</p>
+<iframe id = "if" src="https://roberttbs.tk" style="height: 100%; width:100%;"></iframe>
+</body>
+</html>
