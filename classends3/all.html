@@ -1,0 +1,51 @@
+<html>
+<head>
+        <!--Fonts-->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet"> 
+    <style>
+        table {
+          font-family: 'Overpass' sans-serif;
+          background-color:#999999;
+          border-collapse: collapse;
+          width: 85%;
+          color:black;
+          margin:auto;
+        }
+        
+        table td, table th {
+          font-family:'Overpass',sans-serif;
+          border: 1px solid #ddd;
+          padding: 10px;
+        }
+        table tr:nth-child(even){background-color: #444444;color:white;}
+        /*table tr:hover {background-color: #ddd;}*/
+        
+        table th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #ff7b00;
+          color: white;
+        }
+      body{
+        text-align:center;
+        background-color:#444444;
+      }
+        </style>
+    <!--Styling-->
+      <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+  <span><a href="./">CEN 3</a> - <a href="/">home</a></span>
+  <h1 style="text-align: center;margin:0;padding:0;color:white;font-family:'Overpass',sans-serif">Class Ending Notifier Plus</h1>
+  <table class="output"></table>
+  <br>
+  <span style="font-family:'Overpass',sans-serif;color:#999999;">Is a time wrong? Leave a comment on this </span><a href="https://docs.google.com/spreadsheets/d/14Q-XX0Vf2wf1Da-Gdc_d5F3tHVJTAg5V-vH2RWS9f0A/edit">Google Sheets</a>
+  
+  
+  <data id="ArrTransfer" style="display:none">[]</data> <!--This is to transmit the array between files-->
+  <script src="main.js"></script>
+</body>
+</html>
