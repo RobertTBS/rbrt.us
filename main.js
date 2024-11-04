@@ -32,7 +32,7 @@ const Day = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 document.getElementById("winsupport").innerHTML = Day+" days"
 }
 winsupport()
-setInterval(winsupport,1000)
+setInterval(winsupport,20000)
 
 //Weather widget code
 
@@ -128,6 +128,7 @@ function weatherFor(city){
                   let AlertsArr = JSON.parse(xmlhttp4.response).features;
                   document.getElementById("AlertsBox").innerHTML = "";
                   AlertsArr.forEach(function(ThisEvent,time){
+                    //Alert box - if(ThisEvent.properties.event == "Severe Thunderstorm Warning" || ThisEvent.properties.event == "Tornado Warning") alert("-- "+ThisEvent.properties.event+"! --\n - "+ThisEvent.properties.description)
                     let p = document.createElement("p");
                     p.innerHTML = "<b>"+ThisEvent.properties.event+"</b>";
                     p.title = ThisEvent.properties.description +"\n\n" + ThisEvent.properties.instruction;
