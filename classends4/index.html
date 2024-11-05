@@ -91,6 +91,10 @@
       <option value="2">Show Remaining</option>
       <option value="3">Show Old</option>
     </select>
+    <select id="KeepAwake" onchange="setConfig('KeepAwake',this.value)" value="1" title="Keep the screen from sleeping if you want">
+      <option value="0">Don't Keep On</option>
+      <option value="1">Keep Screen On</option>
+    </select>
     <input placeholder="Refresh Rate (ms)" id="refrat" onchange="setConfig('refrat',this.value)" title="Refresh rate in milleseconds (1/1000 second) - Lower numbers are more accurate, with more CPU usage. Higher numbers are slower, but use less CPU.">
     <hr>
     <table id="output" style="display:grid"></table>

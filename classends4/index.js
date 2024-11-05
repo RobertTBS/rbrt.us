@@ -7,6 +7,7 @@ var sysconfig;
 var dayDat;
 const defaultDaySheetname = "NORM";
 var RptInt;
+let wakeLock = null;
 
 //Looping variables
 let keeplooping = false;
@@ -48,6 +49,7 @@ function _2(){
   setConfig("TabText",config["TabText"] || 1)
   setConfig("ShowOld",config["ShowOld"] || 1)
   setConfig("refrat",config["refrat"] || sysconfig[0]["Default refresh rate (in ms)"]);
+  setConfig("KeepAwake",config["KeepAwake"] || 0)
   _3()
 }
 
@@ -174,6 +176,11 @@ function getTime(){
       if (hour["Hour Name"] == leastPD){
         document.title = timeRemText
       }
+    }
+    if (config["KeepAwake"] == 1){
+      wakeLock = navigator.wakeLock.request("screen");
+    }else{
+      wakeLock = null;
     }
     
     //Notifications
