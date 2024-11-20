@@ -192,16 +192,16 @@ function getTime(){
       const notification = new Notification(timeRemText,{tag:'notif',body:"Period "+hour["Hour Name"]+" ends in "+timeRemText, silent:true, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});      
     }else if (config["NotifyMode"] == 3 && hour["Hour Name"] == leastPD && msTo < 2400000){
       reqPerm();
-      const notification = new Notification(timeRemText,{tag:'notif',body:"Less than 5 minutes remaining in period "+hour["Hour Name"]+"! - "+timeRemText, silent:true, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});      
+      const notification = new Notification(timeRemText,{tag:'notif',body:"Less than 5 minutes remaining in period "+hour["Hour Name"]+"! - "+timeRemText, silent:false, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});      
     }else if (config["NotifyMode"] == 4 && hour["Hour Name"] == leastPD && msTo < 120000){
       reqPerm();
-      const notification = new Notification(timeRemText,{tag:'notif',body:"Less than 2 minutes remaining in period "+hour["Hour Name"]+"! - "+timeRemText, silent:true, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});      
+      const notification = new Notification(timeRemText,{tag:'notif',body:"Less than 2 minutes remaining in period "+hour["Hour Name"]+"! - "+timeRemText, silent:false, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});      
     }else if (config["NotifyMode"] == 5 && hour["Hour Name"] == leastPD && msTo < 60000){
       reqPerm();
-      const notification = new Notification(timeRemText,{tag:'notif',body:"Less than 1 minute remaining in period "+hour["Hour Name"]+"! - "+timeRemText, silent:true, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});      
-    }else if (config["NotifyMode"] == 5 && hour["Hour Name"] == leastPD && msTo < 30000){
+      const notification = new Notification(timeRemText,{tag:'notif',body:"Less than 1 minute remaining in period "+hour["Hour Name"]+"! - "+timeRemText, silent:false, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});      
+    }else if (config["NotifyMode"] == 6 && hour["Hour Name"] == leastPD && msTo < 30000){
       reqPerm();
-      const notification = new Notification(timeRemText,{tag:'notif',body:"Less than 30 secs remaining in period "+hour["Hour Name"]+"! - "+timeRemText, silent:true, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});      
+      const notification = new Notification(timeRemText,{tag:'notif',body:"Less than 30 secs remaining in period "+hour["Hour Name"]+"! - "+timeRemText, silent:false, renotify: false, icon:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg',badge:'https://cdn.glitch.com/782eb81c-c672-44cf-b500-e4669b3dc4f1/NORTHPOLK.svg'});      
     }
       
       
