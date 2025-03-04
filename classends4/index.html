@@ -44,6 +44,18 @@
         h1,span,p,a{
           color:white;
         }
+        dialog{
+          position:absolute;
+          width:60%;
+          height:60%;
+          background-color:rgba(68,68,68,.8);
+          border:2px solid white;
+          border-radius:30px;
+          font-family:"Overpass", sans-serif;
+        }
+        dialog>span{
+          font-weight:900;
+        }
       </style>
     <!--Google fonts-->
       <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,50 +69,80 @@
         <a href="/">home</a>
     <h1 style="font-family:'Press Start 2P',sans-serif;margin:0;">Class Ending Notifier 4</h1>
     <hr>
-    <select  id="TypeSelect" onchange="setConfig('Sheetname',this.value)" value="10" title="Day type selector. This should auto set upon load.">
-    </select>
-    <select id="SorE" onchange="setConfig('SorE',this.value)" value="E" title="Show time to the beginning or end of the period">
-      <option value="1">End of period</option>
-      <option value="2">Start of period</option>
-    </select>
-    <select id="DispMode" onchange="setConfig('DispMode',this.value)" value="1" title="Display modes, all periods (classic mode), or current period (simple mode)">
-      <option value="1">Show All Periods</option>
-      <option value="2">Show Current Period</option>
-    </select>
-    <select id="TextMode" onchange="setConfig('TextMode',this.value)" value="1" title="Text modes">
-      <option value="1">#H ##M ##S</option>
-      <option value="2">#:##:##</option>
-      <option value="3">#H##M##S</option>
-      <option value="4"># : ## : ##</option>
-      <option value="5">Just Seconds</option>
-    </select>
-    <select id="NotifyMode" onchange="setConfig('NotifyMode',this.value)" value="1" title="Notification modes">
-      <option value="1">No Notification</option>
-      <option value="2">Show Time Remaining</option>
-      <option value="3">Show 5 min before end</option>
-      <option value="4">Show 2 min before end</option>
-      <option value="5">Show 1 min before end</option>
-      <option value="6">Show 30 sec before end</option>
-    </select>
-    <select id="TabText" onchange="setConfig('TabText',this.value)" value="1" title="Tab Text">
-      <option value="1">Tab Default</option>
-      <option value="2">Time Remaining</option>
-    </select>
-    <select id="ShowOld" onchange="setConfig('ShowOld',this.value)" value="1" title="Display periods that have passed">
-      <option value="1">Show All</option>
-      <option value="2">Show Remaining</option>
-      <option value="3">Show Old</option>
-    </select>
-    <select id="KeepAwake" onchange="setConfig('KeepAwake',this.value)" value="1" title="Keep the screen from sleeping if you want">
-      <option value="0">Don't Keep On</option>
-      <option value="1">Keep Screen On</option>
-    </select>
-    <input placeholder="Refresh Rate (ms)" id="refrat" onchange="setConfig('refrat',this.value)" title="Refresh rate in milleseconds (1/1000 second) - Lower numbers are more accurate, with more CPU usage. Higher numbers are slower, but use less CPU.">
+      <button onclick="document.getElementById('dg').showModal()">&#9881 Settings</button>
     <hr>
     <table id="output" style="display:grid"></table>
 
     <hr>
     <span style="font-family:'Overpass',sans-serif;color:#999999;" id="custMessage">There are no announcements.</span><br><span style="font-family:'Overpass',sans-serif;color:#999999;">Is a time wrong? Send an </span><a href="mailto:robert@rbrt.us">email</a><br>
+    
+    
+    <dialog id="dg">
+      <button onclick="document.getElementById('dg').close()" style="position:absolute;right:1%;top:2%;background-color:red;color:white;border:2px solid white">X</button>
+      <b><p style="font-family:'Press Start 2P',sans-serif;">SETTINGS</p></b>
+      <!--Settings select-->
+      <!--<span>Name of setting <button onclick="alert('Info')">(More info)</button>&nbsp&nbsp&nbsp</span>-->
+      
+      <span>Refresh rate <button onclick="alert('Refresh rate in milleseconds (1/1000 second) - Lower numbers are more accurate, with more CPU usage. Higher numbers are slower, but use less CPU. Defualt is 900, or refreshes every 9/10 of a second')">(More info)</button>&nbsp&nbsp&nbsp</span>
+      <input placeholder="Refresh Rate (ms)" id="refrat" onchange="setConfig('refrat',this.value)">
+      <br>
+      <span>Current day selector <button onclick="alert('Day type selector. This should auto set upon load. Default is Normal')">(More info)</button>&nbsp&nbsp&nbsp</span>
+      <select  id="TypeSelect" onchange="setConfig('Sheetname',this.value)" value="10">
+      </select>
+      <br>
+      <span>Show beginning or end <button onclick="alert('Beginning shows the time to the beginning of the periods, End shows the time until the end of the period. Default is end.')">(More info)</button>&nbsp&nbsp&nbsp</span>
+      <select id="SorE" onchange="setConfig('SorE',this.value)" value="E">
+        <option value="1">End of period</option>
+        <option value="2">Start of period</option>
+      </select>
+      <br>
+      <span>Display mode <button onclick="alert('Display modes, Show All Periods (classic mode), or Show Current Period (simple mode). Default is Show All Periods / classic mode.')">(More info)</button>&nbsp&nbsp&nbsp</span>
+      <select id="DispMode" onchange="setConfig('DispMode',this.value)" value="1">
+        <option value="1">Show All Periods</option>
+        <option value="2">Show Current Period</option>
+      </select>
+      <br>
+      <span>Format mode <button onclick="alert('How to display the numbers, in hours, minutes, and seconds. default is #H ##M ##S.')">(More info)</button>&nbsp&nbsp&nbsp</span>
+      <select id="TextMode" onchange="setConfig('TextMode',this.value)" value="1">
+        <option value="1">#H ##M ##S</option>
+        <option value="2">#:##:##</option>
+        <option value="3">#H##M##S</option>
+        <option value="4"># : ## : ##</option>
+        <option value="5">Just Seconds</option>
+      </select>
+      <br>
+      <span>Notifications <button onclick="alert('To show the notifications. Either none, always showing the time remaining, or a specific number of minutes in advance. Default is no notification.')">(More info)</button>&nbsp&nbsp&nbsp</span>
+      <select id="NotifyMode" onchange="setConfig('NotifyMode',this.value)" value="1">
+        <option value="1">No Notification</option>
+        <option value="2">Show Time Remaining</option>
+        <option value="3">Show 5 min before end</option>
+        <option value="4">Show 2 min before end</option>
+        <option value="5">Show 1 min before end</option>
+        <option value="6">Show 30 sec before end</option>
+      </select>
+      <br>
+      <span>Tab text <button onclick="alert('This sets the text on the tab, so you can see it on a different tab or not. Defualt is Tab Default.')">(More info)</button>&nbsp&nbsp&nbsp</span>
+      <select id="TabText" onchange="setConfig('TabText',this.value)" value="1">
+        <option value="1">Tab Default</option>
+        <option value="2">Time Remaining</option>
+      </select>
+      <br>
+      <span>Show remaining only <button onclick="alert('This shows either all of the periods, the periods that are left in the day, or the periods that have already passed. Default is Show All.')">(More info)</button>&nbsp&nbsp&nbsp</span>
+      <select id="ShowOld" onchange="setConfig('ShowOld',this.value)" value="1">
+        <option value="1">Show All</option>
+        <option value="2">Show Remaining</option>
+        <option value="3">Show Old</option>
+      </select>
+      <br>
+      <span>Keep screen on <button onclick="alert('This will keep your screen on, useful for not having to click to keep the screen on when you are in a boring class and trying to do nothing.')">(More info)</button>&nbsp&nbsp&nbsp</span>
+      <select id="KeepAwake" onchange="setConfig('KeepAwake',this.value)" value="1">
+        <option value="0">Don't Keep On</option>
+        <option value="1">Keep Screen On</option>
+      </select>
+      <br>
+    </dialog>
+    
+    
     
     <script src="https://cdn.jsdelivr.net/npm/public-google-sheets-parser@latest"></script>
     <script src="/classends4/index.js"></script>
