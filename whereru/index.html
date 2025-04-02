@@ -26,7 +26,8 @@
   <body>
     <a href="/">home</a>
     <h1>Where R U</h1>
-    <h3>The geoguessr-like game where you are given a preview of a location on openstreetmap, and you must find the location in Iowa only using your mind and eye. The left box is the preview box, where you will explore your surroundings. Zoom and click on the correct location on the right box to see how well you did. If there is no satellite photography, you are likely outside Iowa</h3>
+    <button onclick="alert('This is a geoguessr-like game where you are given a preview of a location on openstreetmap, and you must find the location in Iowa only using your mind and eye.\n\nThe left box is the preview box, where you will explore your surroundings. The Reset View Map button brings you back to the original location.\n\nZoom and click on the correct location on the right box. You may switch them to satellite to make a more accurate guess.\n\nIf there is no satellite photography, you are likely outside Iowa.\n\nPress the SELECT button to take a guess. It will show you your distance. Then click Next Challenge.\n\nIf you are outside Iowa or can\'t figure it out, click SKIP.')">How to play</button>
+    <br>
     <button onclick="reset()">Reset View Map</button><button onclick="next()">Next Challenge</button><!--<button onclick="window.location.href='/whereru/index.html?rand'">Complete Randomness Mode</button>-->
     <div style="zIndex:0;">
       <div id="map" ></div>

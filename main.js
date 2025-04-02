@@ -132,6 +132,7 @@ function weatherFor(city){
                     let p = document.createElement("p");
                     p.innerHTML = "<b>"+ThisEvent.properties.event+"</b>";
                     p.title = ThisEvent.properties.description +"\n\n" + ThisEvent.properties.instruction;
+                    p.onclick = function(){alert(ThisEvent.properties.description +"\n\n" + ThisEvent.properties.instruction)}
                     document.getElementById("AlertsBox").appendChild(p);
                   });
                 }
