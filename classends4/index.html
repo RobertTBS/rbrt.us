@@ -146,5 +146,22 @@
     
     <script src="https://cdn.jsdelivr.net/npm/public-google-sheets-parser@latest"></script>
     <script src="/classends4/index.js"></script>
+    
+    <!--Analytics-->
+  <script src="//server-analytics.rbrt.us/socket.io/socket.io.js"></script>
+  <script>
+    let onTime = new Date();
+    let uuid = self.crypto.randomUUID();
+    uuid = uuid || localStorage.getItem("uniqueUUID") || null;
+    localStorage.setItem("uniqueUUID",uuid);
+    const socket = io("https://server-analytics.rbrt.us/",{ secure: true });
+    socket.on('connect', () => {
+        console.log("Analytics connect");
+        socket.emit("serverOn",onTime,uuid,navigator.userAgent,window.location.toString());
+    })
+    socket.on('disconnect', () => {
+        console.log("Analytics disconnect")
+    })
+  </script>
   </body>
 </html>
