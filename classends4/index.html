@@ -150,9 +150,9 @@
     <!--Analytics-->
   <script src="//server-analytics.rbrt.us/socket.io/socket.io.js"></script>
   <script>
-    let onTime = new Date();
-    let uuid = self.crypto.randomUUID();
-    uuid = uuid || localStorage.getItem("uniqueUUID") || null;
+    const onTime = new Date();
+    const newUUID = self.crypto.randomUUID();
+    const uuid = localStorage.getItem("uniqueUUID") || newUUID || null;
     localStorage.setItem("uniqueUUID",uuid);
     const socket = io("https://server-analytics.rbrt.us/",{ secure: true });
     socket.on('connect', () => {
